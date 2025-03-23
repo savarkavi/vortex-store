@@ -5,14 +5,14 @@ import { Skeleton } from "../ui/skeleton";
 
 const Featured = () => {
   return (
-    <div className="flex min-h-screen w-full flex-col items-center">
+    <div className="flex min-h-screen w-full flex-col items-center px-4">
       <div className="mt-28 flex flex-col items-center gap-2">
         <h2
-          className={`text-4xl ${duneFont.className} font-semibold uppercase`}
+          className={`text-4xl ${duneFont.className} text-center font-semibold uppercase`}
         >
           The fashion of future
         </h2>
-        <p className="font max-w-lg text-center text-2xl font-light uppercase">
+        <p className="font max-w-lg text-center text-xl font-light uppercase md:text-2xl">
           Elevate Your Look. Transcend the Ordinary. Wear the Future.
         </p>
       </div>
