@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@radix-ui/react-separator": "^1.1.2",
+    "@radix-ui/react-slot": "^1.1.2",
     "@t3-oss/env-nextjs": "^0.12.0",
     "@tanstack/react-query": "^5.68.0",
     "@wix/ecom": "^1.0.1003",
@@ -22,6 +23,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
+    "embla-carousel-react": "^8.5.2",
     "js-cookie": "^3.0.5",
     "ky": "^1.7.5",
     "lucide-react": "^0.483.0",
