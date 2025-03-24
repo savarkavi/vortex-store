@@ -1,16 +1,15 @@
-import { fetchCart } from "@/wix-api/cart";
 import Image from "next/image";
 import logoLight from "../assets/logo-light.png";
 import { SearchIcon, ShoppingCart, UserRound } from "lucide-react";
+import Link from "next/link";
 
 const Navbar = async () => {
-  const cart = await fetchCart();
-  console.log(cart);
-
   return (
     <div className="mx-auto flex w-full max-w-[1680px] items-center justify-between p-4">
       <div className="flex items-center gap-16">
-        <Image src={logoLight} alt="logo" width={48} height={48} />
+        <Link href="/">
+          <Image src={logoLight} alt="logo" width={48} height={48} />
+        </Link>
         <div className="hidden items-center gap-10 xl:flex">
           <p className="text-xl uppercase">Tops</p>
           <p className="text-xl uppercase">Bottoms</p>
