@@ -35,3 +35,18 @@ export const fetchProductsByCollection = async ({
 
   return query.find();
 };
+
+export const fetchProduct = async (slug: string) => {
+  const wixClient = getWixClient();
+
+  const { items } = await wixClient.products
+    .queryProducts()
+    .eq("slug", slug)
+    .find();
+
+  const product = items[0];
+
+  if (!product) return null;
+
+  return product;
+};
