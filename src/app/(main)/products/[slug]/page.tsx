@@ -6,6 +6,18 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
+export async function generateMetadata({ params }: PageProps) {
+  const { slug } = await params;
+
+  const productData = await fetchProduct(slug);
+
+  if (!productData?._id) notFound();
+
+  return {
+    title: productData.name,
+  };
+}
+
 const Page = async ({ params }: PageProps) => {
   const { slug } = await params;
 
