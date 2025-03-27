@@ -4,17 +4,28 @@ import { products } from "@wix/stores";
 interface ProductPriceTagProps {
   product: products.Product;
   styles: string;
+  selectdVariant?: products.Variant | null;
 }
 
-const ProductPriceTag = ({ product, styles }: ProductPriceTagProps) => {
+const ProductPriceTag = ({
+  product,
+  styles,
+  selectdVariant,
+}: ProductPriceTagProps) => {
   return (
     <div className="flex items-center justify-between gap-6">
       <div className={cn("flex items-center gap-2", styles)}>
-        <p
-          className={cn(product.discount?.type !== "NONE" && "line-through")}
-        >{`${product.priceData?.formatted?.price}`}</p>
+        <p className={cn(product.discount?.type !== "NONE" && "line-through")}>
+          {selectdVariant
+            ? selectdVariant.variant?.priceData?.formatted?.price
+            : product.priceData?.formatted?.price}
+        </p>
         {product.discount?.type !== "NONE" && (
-          <p>{`${product.priceData?.formatted?.discountedPrice}`}</p>
+          <p>
+            {selectdVariant
+              ? selectdVariant.variant?.priceData?.formatted?.discountedPrice
+              : product.priceData?.formatted?.discountedPrice}
+          </p>
         )}
       </div>
       {product.discount?.type !== "NONE" && (
