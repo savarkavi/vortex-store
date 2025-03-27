@@ -15,8 +15,8 @@ interface ProductImageCarouselProps {
 }
 const ProductImageCarousel = ({ product }: ProductImageCarouselProps) => {
   return (
-    <Carousel>
-      <CarouselContent className="h-[800px] w-[600px]">
+    <Carousel className="w-full max-w-[550px] border">
+      <CarouselContent className="h-[800px] w-full">
         {product.media?.items?.map((item) => (
           <CarouselItem key={item._id} className="relative h-full w-full">
             <Image
