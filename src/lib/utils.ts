@@ -26,7 +26,6 @@ export const checkInStock = (
   productOptions: Record<string, string>,
 ) => {
   const variant = findVariant(product, productOptions);
-  console.log(variant);
 
   return variant
     ? variant.stock?.quantity !== 0 || variant.stock?.inStock
