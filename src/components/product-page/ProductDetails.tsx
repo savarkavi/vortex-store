@@ -1,14 +1,16 @@
 "use client";
 
 import { products } from "@wix/stores";
-
-import ProductPriceTag from "../ProductPriceTag";
-import { Star } from "lucide-react";
-import { Separator } from "../ui/separator";
 import ProductImageCarousel from "./ProductImageCarousel";
 import ProductOptions from "./ProductOptions";
 import { useState } from "react";
-import { findVariant } from "@/lib/utils";
+import { checkInStock, findVariant } from "@/lib/utils";
+import { Button } from "../ui/button";
+import { Label } from "../ui/label";
+import { Input } from "../ui/input";
+import ProductDetailsHeader from "./ProductDetailsHeader";
+import { Separator } from "../ui/separator";
+import ProductMoreInfo from "./ProductMoreInfo";
 
 interface ProductDetailsProps {
   productData: products.Product;
@@ -24,40 +26,58 @@ const ProductDetails = ({ productData }: ProductDetailsProps) => {
       }))
       .reduce((acc, curr) => ({ ...acc, ...curr }), {}) || {},
   );
+  const [quantity, setQuantity] = useState(1);
 
   const selectedVariant = findVariant(productData, selectedOptions);
+  const isInStock = checkInStock(productData, selectedOptions);
 
   return (
-    <div className="mx-auto flex w-full max-w-[1360px] items-start gap-24 px-16 py-8">
-      <ProductImageCarousel product={productData} />
+    <div className="relative mx-auto mt-8 flex w-full max-w-[1360px] items-start gap-24 px-16">
+      <ProductImageCarousel
+        product={productData}
+        selectedOptions={selectedOptions}
+      />
       <div className="flex flex-col gap-16">
+        <ProductDetailsHeader
+          productData={productData}
+          selectedVariant={selectedVariant}
+        />
         <div className="flex flex-col gap-8">
-          <h1 className="text-5xl uppercase">{productData.name}</h1>
-          <div className="flex items-center justify-between">
-            <ProductPriceTag
-              product={productData}
-              styles="text-base"
-              selectdVariant={selectedVariant}
-            />
-            <div className="flex items-center gap-2">
-              <div className="flex items-center gap-2">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star
-                    key={i}
-                    className={`${i < 4 && "fill-black"} size-4 cursor-pointer`}
-                  />
-                ))}
-              </div>
-              <p>(7)</p>
+          <ProductOptions
+            product={productData}
+            selectedOptions={selectedOptions}
+            setSelectedOptions={setSelectedOptions}
+          />
+          <div className="w-fit space-y-4">
+            <Label htmlFor="quantity">Quantity</Label>
+            <div className="flex items-center gap-4">
+              <Input
+                name="quantity"
+                type="number"
+                className="border-black"
+                value={quantity}
+                onChange={(e) => {
+                  if (quantity < 1) {
+                    return setQuantity(1);
+                  }
+                  setQuantity(Number(e.target.value));
+                }}
+                disabled={!isInStock}
+              />
+              {!isInStock && (
+                <p className="text-destructive shrink-0">Out of stock</p>
+              )}
             </div>
           </div>
+          <Button
+            className="w-full cursor-pointer bg-black py-6 text-xl text-white"
+            disabled={quantity <= 0 || !isInStock}
+          >
+            Add to Cart
+          </Button>
           <Separator className="bg-gray-400" />
         </div>
-        <ProductOptions
-          product={productData}
-          selectedOptions={selectedOptions}
-          setSelectedOptions={setSelectedOptions}
-        />
+        <ProductMoreInfo productData={productData} />
       </div>
     </div>
   );
