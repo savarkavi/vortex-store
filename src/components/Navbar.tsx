@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Navbar = async () => {
   return (
-    <div className="mx-auto flex w-full max-w-[1680px] items-center justify-between p-4">
+    <div className="sticky top-0 mx-auto flex h-[80px] w-full max-w-[1680px] items-center justify-between p-4">
       <div className="flex items-center gap-16">
         <Link href="/">
           <Image src={logoLight} alt="logo" width={48} height={48} />
