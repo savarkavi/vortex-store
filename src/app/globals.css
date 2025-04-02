@@ -43,7 +43,11 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 body {
-  background-image: url("../assets//bedge-grunge.png");
+  background-image: url("../assets/binding-light.png");
+}
+
+.navbar {
+  background-image: url("../assets/binding-light.png");
 }
 
 :root {
