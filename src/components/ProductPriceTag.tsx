@@ -29,7 +29,7 @@ const ProductPriceTag = ({
         )}
       </div>
       {product.discount?.type !== "NONE" && (
-        <div className="w-fit rounded-md bg-zinc-900 px-4 py-1 text-sm text-white">{`${product.discount?.value}% off`}</div>
+        <div className="w-fit shrink-0 rounded-md bg-zinc-900 px-4 py-1 text-sm text-white">{`${product.discount?.value}% off`}</div>
       )}
     </div>
   );
