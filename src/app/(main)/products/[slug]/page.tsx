@@ -27,7 +27,7 @@ const Page = async ({ params }: PageProps) => {
 
   return (
     <div>
-      <ProductDetails productData={productData} />;
+      <ProductDetails productData={productData} />
     </div>
   );
 };
