@@ -32,7 +32,7 @@ const ProductDetails = ({ productData }: ProductDetailsProps) => {
   const isInStock = checkInStock(productData, selectedOptions);
 
   return (
-    <div className="relative mx-auto mt-8 flex w-full max-w-[1360px] items-start gap-24 px-16">
+    <div className="relative mx-auto mt-8 flex w-full max-w-[1360px] flex-col items-center gap-20 px-4 lg:flex-row lg:items-start lg:gap-24 lg:px-16">
       <ProductImageCarousel
         product={productData}
         selectedOptions={selectedOptions}

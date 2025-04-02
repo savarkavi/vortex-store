@@ -14,8 +14,8 @@ const ProductDetailsHeader = ({
 }: ProductDetailsHeaderProps) => {
   return (
     <div className="flex flex-col gap-8">
-      <h1 className="text-5xl uppercase">{productData.name}</h1>
-      <div className="flex items-center justify-between">
+      <h1 className="text-3xl uppercase md:text-5xl">{productData.name}</h1>
+      <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center md:gap-0 lg:flex-col lg:items-start lg:gap-4 xl:flex-row xl:items-center xl:gap-0">
         <ProductPriceTag
           product={productData}
           styles="text-base"

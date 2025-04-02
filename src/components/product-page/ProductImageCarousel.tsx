@@ -38,23 +38,25 @@ const ProductImageCarousel = ({
 
   return (
     <Carousel
-      className="sticky top-[112px] w-full max-w-[550px] shrink-0"
+      className="w-full max-w-[550px] shrink-0 lg:sticky lg:top-[112px] lg:max-w-[450px] xl:max-w-[550px]"
       setApi={setApi}
     >
-      <CarouselContent className="h-[800px] w-full">
+      <CarouselContent className="h-[500px] w-full sm:h-[600px] md:h-[800px] lg:h-[600px] xl:h-[800px]">
         {product.media?.items?.map((item) => (
-          <CarouselItem key={item._id} className="relative h-full w-full">
-            <Image
-              src={item.image?.url || "/placeholder.png"}
-              alt="product image"
-              fill
-              className="object-cover"
-            />
+          <CarouselItem key={item._id} className="">
+            <div className="relative ml-2 h-full w-full">
+              <Image
+                src={item.image?.url || "/placeholder.png"}
+                alt="product image"
+                fill
+                className="object-cover"
+              />
+            </div>
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="cursor-pointer bg-black text-white hover:bg-black hover:text-white" />
-      <CarouselNext className="cursor-pointer bg-black text-white hover:bg-black hover:text-white" />
+      <CarouselPrevious className="hidden cursor-pointer bg-black text-white hover:bg-black hover:text-white md:flex" />
+      <CarouselNext className="hidden cursor-pointer bg-black text-white hover:bg-black hover:text-white md:flex" />
     </Carousel>
   );
 };
