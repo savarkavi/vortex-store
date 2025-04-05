@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     template: "%s | Vortex",
     absolute: "Vortex",
   },
-  description: "An online shopping store for futre clothing and accessories",
+  description: "An online shopping store for future clothing and accessories",
 };
 
 export default function RootLayout({
