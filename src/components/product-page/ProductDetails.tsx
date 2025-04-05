@@ -5,12 +5,12 @@ import ProductImageCarousel from "./ProductImageCarousel";
 import ProductOptions from "./ProductOptions";
 import { useState } from "react";
 import { checkInStock, findVariant } from "@/lib/utils";
-import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import ProductDetailsHeader from "./ProductDetailsHeader";
 import { Separator } from "../ui/separator";
 import ProductMoreInfo from "./ProductMoreInfo";
+import AddToCartButton from "./AddToCartButton";
 
 interface ProductDetailsProps {
   productData: products.Product;
@@ -69,12 +69,12 @@ const ProductDetails = ({ productData }: ProductDetailsProps) => {
               )}
             </div>
           </div>
-          <Button
-            className="w-full cursor-pointer bg-black py-6 text-xl text-white"
-            disabled={quantity <= 0 || !isInStock}
-          >
-            Add to Cart
-          </Button>
+          <AddToCartButton
+            product={productData}
+            selectedOptions={selectedOptions}
+            quantity={quantity}
+            isInStock={isInStock}
+          />
           <Separator className="bg-gray-400" />
         </div>
         <ProductMoreInfo productData={productData} />
