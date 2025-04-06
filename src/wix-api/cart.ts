@@ -1,9 +1,8 @@
 import { findVariant } from "@/lib/utils";
-import { getWixClient } from "@/lib/wix-client.base";
+import { WixClient } from "@/lib/wix-client.base";
 import { products } from "@wix/stores";
 
-export const fetchCart = async () => {
-  const wixClient = getWixClient();
+export const fetchCart = async (wixClient: WixClient) => {
   try {
     return await wixClient.currentCart.getCurrentCart();
   } catch {}
@@ -15,13 +14,10 @@ interface AddToCartValues {
   quantity: number;
 }
 
-export const addToCart = async ({
-  product,
-  selectedOptions,
-  quantity,
-}: AddToCartValues) => {
-  const wixClient = getWixClient();
-
+export const addToCart = async (
+  wixClient: WixClient,
+  { product, selectedOptions, quantity }: AddToCartValues,
+) => {
   const selectedVariant = findVariant(product, selectedOptions);
 
   return wixClient.currentCart.addToCurrentCart({
