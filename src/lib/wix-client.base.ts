@@ -35,4 +35,4 @@ export const getWixClient = (tokens: Tokens | undefined) => {
   });
 };
 
-export type WixBrowserClient = ReturnType<typeof getWixClient>;
+export type WixClient = ReturnType<typeof getWixClient>;
