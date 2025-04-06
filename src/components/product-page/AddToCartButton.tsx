@@ -1,5 +1,6 @@
 "use client";
 
+import { getWixBrowserClient } from "@/lib/wix-client.browser";
 import { addToCart } from "@/wix-api/cart";
 import { products } from "@wix/stores";
 
@@ -20,7 +21,9 @@ const AddToCartButton = ({
     <button
       className="w-full cursor-pointer rounded-md bg-black py-3 text-xl text-white"
       disabled={quantity <= 0 || !isInStock}
-      onClick={() => addToCart({ product, selectedOptions, quantity })}
+      onClick={() =>
+        addToCart(getWixBrowserClient(), { product, selectedOptions, quantity })
+      }
     >
       Add to Cart
     </button>
