@@ -10,7 +10,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
 
-  const productData = await fetchProduct(getWixServerClient(), slug);
+  const productData = await fetchProduct(await getWixServerClient(), slug);
 
   if (!productData?._id) notFound();
 
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: PageProps) {
 const Page = async ({ params }: PageProps) => {
   const { slug } = await params;
 
-  const productData = await fetchProduct(getWixServerClient(), slug);
+  const productData = await fetchProduct(await getWixServerClient(), slug);
 
   if (!productData?._id) notFound();
 
