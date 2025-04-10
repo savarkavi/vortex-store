@@ -5,14 +5,16 @@ import { fetchProductsByCollection } from "@/wix-api/products";
 import { products } from "@wix/stores";
 
 const FeaturedProducts = async () => {
+  const wixServerClient = await getWixServerClient();
+
   const collection = await fetchCollectionBySlug(
-    getWixServerClient(),
+    wixServerClient,
     "featured-products",
   );
 
   if (!collection || !collection._id) return null;
 
-  const products = await fetchProductsByCollection(getWixServerClient(), {
+  const products = await fetchProductsByCollection(wixServerClient, {
     collectionIds: collection._id,
   });
 
