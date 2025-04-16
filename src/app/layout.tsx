@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { shareTechMono } from "@/fonts/fonts";
 import Navbar from "@/components/Navbar";
+import ReactQueryProvider from "@/ReactQueryProvider";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: {
@@ -19,8 +21,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${shareTechMono.className} antialiased`}>
-        <Navbar />
-        {children}
+        <ReactQueryProvider>
+          <Navbar />
+          {children}
+        </ReactQueryProvider>
+        <Toaster />
       </body>
     </html>
   );
