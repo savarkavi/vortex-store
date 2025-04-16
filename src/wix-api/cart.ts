@@ -8,7 +8,7 @@ export const fetchCart = async (wixClient: WixClient) => {
   } catch {}
 };
 
-interface AddToCartValues {
+export interface AddToCartValues {
   product: products.Product;
   selectedOptions: Record<string, string>;
   quantity: number;
@@ -34,4 +34,25 @@ export const addToCart = async (
       },
     ],
   });
+};
+
+export interface UpdateCartQuantityValues {
+  productId: string;
+  newQuantity: number;
+}
+
+export const updateCartQuantity = async (
+  wixClient: WixClient,
+  { productId, newQuantity }: UpdateCartQuantityValues,
+) => {
+  return wixClient.currentCart.updateCurrentCartLineItemQuantity([
+    { _id: productId, quantity: newQuantity },
+  ]);
+};
+
+export const removeCartItem = async (
+  wixClient: WixClient,
+  productId: string,
+) => {
+  return wixClient.currentCart.removeLineItemsFromCurrentCart([productId]);
 };
